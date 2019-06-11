@@ -16,6 +16,22 @@ namespace NNSharp.lib
             this.Array = new double[rows, cols];
         }
 
+        public Matrix(Matrix matrix)
+        {
+            this.Rows = matrix.Rows;
+            this.Columns = matrix.Columns;
+            this.Array = new double[this.Rows, this.Columns];
+            
+            for (int i = 0; i < this.Rows; i++)
+            {
+                for (int j = 0; j < this.Columns; j++)
+                {
+                    this.Array[i, j] = matrix.Array[i, j];
+                }
+            }
+
+        }
+
         public Matrix(double[,] matrix)
         {
             this.Array = matrix;
@@ -58,7 +74,7 @@ namespace NNSharp.lib
 
             for (int i = 0; i < this.Rows; i++)
                 for (int j = 0; j < this.Columns; j++)
-                    this.Array[i, j] = rnd.NextDouble();
+                    this.Array[i, j] = 2 * rnd.NextDouble() - 1;
         }
 
         public static Matrix Add(Matrix matrix1, Matrix matrix2)

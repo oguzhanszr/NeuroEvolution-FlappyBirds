@@ -12,13 +12,13 @@ namespace NNSharp.lib
 
         private int OutputNodes { get; set; }
 
-        private Matrix WeightsOfInputHidden { get; set; }
+        public Matrix WeightsOfInputHidden { get; set; }
 
-        private Matrix WeightsOfHiddenOutput { get; set; }
+        public Matrix WeightsOfHiddenOutput { get; set; }
 
-        private Matrix WeighstOfBiasHidden { get; set; }
+        public Matrix WeighstOfBiasHidden { get; set; }
 
-        private Matrix WeightsOfBiasOutput { get; set; }
+        public Matrix WeightsOfBiasOutput { get; set; }
 
 
         public NeuralNetwork(int inputLayer, int hiddenLayer, int outputLayer)
@@ -37,6 +37,21 @@ namespace NNSharp.lib
             this.WeighstOfBiasHidden.Randomize();
             this.WeightsOfBiasOutput.Randomize();
             this.LearningRate = 0.1;
+        }
+
+        public NeuralNetwork(NeuralNetwork network)
+        {
+            this.InputNodes = network.InputNodes;
+            this.HiddenNodes = network.HiddenNodes;
+            this.OutputNodes = network.OutputNodes;
+
+            this.WeightsOfInputHidden = new Matrix(network.WeightsOfInputHidden);
+            this.WeightsOfHiddenOutput = new Matrix(network.WeightsOfHiddenOutput);
+            this.WeighstOfBiasHidden = new Matrix(network.WeighstOfBiasHidden);
+            this.WeightsOfBiasOutput = new Matrix(network.WeightsOfBiasOutput);
+            
+            this.LearningRate = network.LearningRate;
+
         }
 
         public Matrix feedForward(Matrix input)
@@ -102,7 +117,7 @@ namespace NNSharp.lib
             this.WeighstOfBiasHidden = Matrix.Add(this.WeighstOfBiasHidden, hidden_gradient);
         }
 
-        private delegate double Func(double x);
+        public delegate double Func(double x);
         private double sigmoidFunction(double x)
         {
             return 1 / (1 + Math.Pow(Math.E, -x));
@@ -113,7 +128,7 @@ namespace NNSharp.lib
             return x * (1 - x);
         }
 
-        private void map(Matrix matrix, Func function)
+        public void map(Matrix matrix, Func function)
         {
             for (int i = 0; i < matrix.Rows; i++)
             {
@@ -123,5 +138,12 @@ namespace NNSharp.lib
                 }
             }
         }
+
+        public void Save()
+        {
+            //To-do
+        }
+
+
     }
 }

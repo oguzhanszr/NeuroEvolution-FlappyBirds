@@ -19,6 +19,10 @@ namespace FlappyBirds
 
         public int Interval { get; set; }
 
+        public bool OffScreen { get; set; }
+
+        public Brush Color { get; set; }
+
         public Pipe(Rectangle up, Rectangle down, int interval)
         {
             this.Up = new Rectangle(up.X, up.Y, up.Width, up.Height);
@@ -28,15 +32,17 @@ namespace FlappyBirds
             this.Down_X = down.X;
             this.Down_Y = down.Y;
             this.Interval = interval;
+            this.OffScreen = false;
+            this.Color = Brushes.Green;
         }
 
         public void Left()
         {
-            this.Up_X -= 2*3;
-            this.Down_X -= 2*3;
+            this.Up_X -= 2 * 3;
+            this.Down_X -= 2 * 3;
             Update();
         }
-        
+
 
         public void Update()
         {
@@ -56,7 +62,7 @@ namespace FlappyBirds
 
         public void Draw(Graphics g)
         {
-            g.FillRectangles(Brushes.LightGreen, new Rectangle[] { Up, Down });
+            g.FillRectangles(Color, new Rectangle[] { Up, Down });
         }
     }
 }

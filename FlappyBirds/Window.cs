@@ -26,8 +26,10 @@ namespace FlappyBirds
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.LightBlue;
             this.Text = "NeuroEvolution Flappy Birds";
+
+            
 
             InitializeComponents();
         }
