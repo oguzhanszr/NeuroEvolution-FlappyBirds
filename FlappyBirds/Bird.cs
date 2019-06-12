@@ -29,6 +29,8 @@ namespace FlappyBirds
         public double fitness { get; set; }
         public NeuralNetwork Brain { get; set; }
 
+        public Brush Color { get; set; }
+
         public Bird(int x, int y, int width, int height)
         {
             this.X = x;
@@ -40,9 +42,9 @@ namespace FlappyBirds
             this.Brain = new NeuralNetwork(4, 8, 1);
             this.fitness = 0;
             this.score = 0;
-
-            gravity = 0;
-            velocity = 0.15f;
+            this.Color = Brushes.Orange;
+            this.gravity = 0;
+            this.velocity = 0.15f;
         }
 
         public Bird(Bird bird)
@@ -54,11 +56,10 @@ namespace FlappyBirds
             this.Body = new RectangleF(bird.X, 300, bird.Width, bird.Height);
             this.isDead = false;
             this.Brain = new NeuralNetwork(bird.Brain);
-            this.score = 0;
-            this.fitness = 0;
-            gravity = 0;
-            velocity = 0.15f;
-            // this.Mutate();
+            this.score = bird.score;
+            this.fitness = bird.fitness;
+            this.gravity = 0;
+            this.velocity = 0.15f;
         }
 
         public void Mutate()
@@ -74,8 +75,6 @@ namespace FlappyBirds
             Random rnd = new Random(DateTime.Now.Millisecond);
             GaussianRandom r = new GaussianRandom();
             double random = rnd.NextDouble();
-            // double random = r.NextGaussian(0, 0.1);
-
 
             if (random < rate)
             {

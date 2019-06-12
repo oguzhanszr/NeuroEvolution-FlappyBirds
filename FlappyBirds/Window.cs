@@ -29,8 +29,6 @@ namespace FlappyBirds
             this.BackColor = System.Drawing.Color.LightBlue;
             this.Text = "NeuroEvolution Flappy Birds";
 
-            
-
             InitializeComponents();
         }
 
