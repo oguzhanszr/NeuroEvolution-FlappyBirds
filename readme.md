@@ -12,6 +12,6 @@ Basic neural network library for the .net core.
 
 [Reference](https://www.youtube.com/watch?v=c6y21FkaUqw)
 
-## FlappyBird and genetic algoritm
+## FlappyBird and genetic algorithm
 
 [Reference](https://www.youtube.com/watch?v=ntKn5TPHHAk)
